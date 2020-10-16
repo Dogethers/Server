@@ -1,0 +1,27 @@
+{
+  "name": "userserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit --runInBand --verbose --watchAll",
+    "dev": "nodemon./bin/www",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jest": "^26.5.3",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.4.1",
+    "sequelize": "^6.3.5",
+    "supertest": "^5.0.0"
+  },
+  "devDependencies": {}
+}
