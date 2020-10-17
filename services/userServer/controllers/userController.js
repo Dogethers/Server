@@ -15,13 +15,13 @@ class Controller{
             const user = {id: userData.id, username: userData.username, email: userData.email}
             return res.status(200).json(user)
         } catch (error) {
-            console.log(error)
             return next(error)
         }
     }
 
     static login = async(req, res, next) =>{
         let { email, password } = req.body
+        
         try {
             const userLogin = await User.findOne({where: { email }})
             if(!userLogin){

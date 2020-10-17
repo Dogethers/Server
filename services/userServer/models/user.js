@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const bycrpt = require('bcryptjs')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.UserFriendlist)
     }
   }
   User.init(
@@ -48,16 +50,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      hooks:{
-        beforeCreate : ((user,option) =>{
-          user.password = createHash(user.password)
-        }),
-        beforeCreate : ((user, option) =>{
-          user.isOnline = false
-        })
-      },
-      modelName: "User",
-    }
-  );
-  return User;
-};
+      modelName: 'User',
+    });
+  
+    User.beforeCreate((user,option)=>{
+      user.isOnline = false
+  
+      const salt = bycrpt.genSaltSync(10)
+      user.password = bycrpt.hashSync(user.password , salt)
+    })
+    return User;
+  };

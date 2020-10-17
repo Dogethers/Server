@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "vikryprakasa",
-    "password": "vikgans",
+    "username": "postgres",
+    "password": "wadidaw",
     "database": "Dogether_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
