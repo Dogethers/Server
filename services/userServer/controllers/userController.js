@@ -18,7 +18,7 @@ class Controller{
             const access_token = generateToken(user)
             console.log(userData, access_token);
             // console.log(update)
-            return res.status(200).json({access_token: access_token})
+            return res.status(200).json({access_token: access_token,username:userData.userame})
         } catch (error) {
             return next(error)
         }
@@ -43,7 +43,7 @@ class Controller{
                     const access_token = generateToken(user)
                     const update = await User.update(changeStatus, {where:{id: userLogin.id}})
                     console.log(update)
-                    return res.status(200).json({access_token: access_token})
+                    return res.status(200).json({access_token: access_token,username:userLogin.username})
                 }else{
                     console.log(userLogin, 'ini error')
                     throw({msg : "Invalid Email or Password", statusCode: 400})

@@ -13,7 +13,8 @@ const typeDefs = gql`
     }
 
     type access_token{
-        access_token : String
+        access_token: String,
+        username: String
     }
 
     extend type Mutation{

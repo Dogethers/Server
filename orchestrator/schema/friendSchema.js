@@ -7,7 +7,7 @@ const typeDefs = gql`
     FriendId: Int
     UserId: Int
     status: Boolean
-    Users: [User]
+    Users: User
   }
 
   type User {
