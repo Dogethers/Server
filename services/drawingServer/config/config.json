@@ -2,16 +2,16 @@
   "development": {
     "username": "vikryprakasa",
     "password": "vikgans",
-    "database": "Dogether_development",
+    "database": "dogether_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "vikryprakasa",
-    "password": "vikgans",
-    "database": "dogether_test",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",

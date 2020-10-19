@@ -6,7 +6,7 @@ const { createHash, compareHash } = require('../helpers/bcrypt')
 
 // REGISTER SUCCESS
 // describe("test user register POST/register", function(){
-//     it("test success register with json", function(done){
+//     it.only("test success register with json", function(done){
 //         request(app)
 //             .post("/register")
 //             .send({username:"vikgans", email: "vik@mail.com", password:createHash("vikvik"), isOnline:false})
@@ -75,7 +75,7 @@ const { createHash, compareHash } = require('../helpers/bcrypt')
 
 //// LOGIN SUCCESS
 describe("test user login POST/login", function () {
-    it("test success login with json", function (done) {
+    it.only("test success login with json", function (done) {
       request(app)
         .post("/login")
         .send({email: "vik@mail.com", password:"vikvik", isOnline:true})
