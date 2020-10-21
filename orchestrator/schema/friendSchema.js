@@ -7,15 +7,19 @@ const typeDefs = gql`
     FriendId: Int
     UserId: Int
     status: Boolean
-    Users: User
+    User: User
   }
 
   type User {
-    id: ID!
+    id: ID
     username: String
     email: String
     password: String
     isOnline: Boolean
+  }
+  
+  type AccessToken {
+    access_token: String
   }
 
   extend type Query {
@@ -29,20 +33,20 @@ const typeDefs = gql`
       FriendId: Int # UserID : Int
     ): # status : Boolean
     Friendlist
-    acceptFriend(access_token: String, status: Boolean): Friendlist
-    rejectFriend(access_token: String, status: Boolean): Friendlist
+    acceptFriend(access_token: String, FriendId : Int): AccessToken
+    rejectFriend(access_token: String, status: Boolean, FriendId : Int): Friendlist
   }
 `;
 
 const resolvers = {
   Query: {
     async getFriendlist(_, args) {
+      console.log(args)
       try {
         const { data } = await axios.get("http://localhost:3000/friendlist", {
           headers: { access_token: args.access_token },
         });
         console.log(data);
-
         return data;
       } catch (error) {
         console.log(error);
@@ -85,17 +89,25 @@ const resolvers = {
       }
     },
     async acceptFriend(_, args) {
+      console.log(args);
+      
       try {
-        const { data } = await axios.patch(
+        // const { data } = await axios.patch(
+          console.log(args.FriendId);
+          
+        const data  = await axios.patch(
           "http://localhost:3000/friendlist",
+          { FriendId: args.FriendId },
           {
             headers: { access_token: args.access_token },
           },
-          args
+          
         );
-        return data;
+        const accessToken = data.config.headers.access_token
+        // console.log(data.config.headers.access_token, "ini data")
+        return accessToken;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     },
 

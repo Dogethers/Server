@@ -41,6 +41,8 @@ class friendController {
   }
 
   static async accept(req, res, next) {
+    console.log(req);
+    
     try {
       const changeStatus = {
         status: true,
