@@ -17,6 +17,10 @@ const typeDefs = gql`
         username: String
     }
 
+    extend type Query{
+        allUsers(access_token: String) : [Users]
+    }
+
     extend type Mutation{
         userRegister(
             username : String
@@ -35,6 +39,17 @@ const typeDefs = gql`
 `
 
 const resolvers = {
+    Query : {
+        async allUsers(_, args){
+            try {
+                const { data } = await axios.get("http://localhost:3000/users", {headers:{ access_token : args.access_token}})
+                console.log(data)
+                return data 
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    },
     Mutation  : {
         async userRegister(_, args){
             try {
